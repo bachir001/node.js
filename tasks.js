@@ -68,7 +68,7 @@ function unknownCommand(c){
 
 
 /**
- * Say hello plus the user input 
+ * Say hello plus the user input
  *
  * @returns {void}
  */
@@ -92,7 +92,7 @@ function quit(){
 
 function help(){
 
-console.log('1_ hello for saying hello\n'+
+console.log('1_ hello for saying just hello or hello plus your additional input like hello x ==> \'hello x\'  \n'+
             '2_quit or exit for quit the app\n'
          );
 
