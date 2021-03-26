@@ -47,6 +47,8 @@ function onDataReceived(text) {
     hello(text);
   }else if (text.trim()==='help') {
     help();
+  }else if (text.trim()==='list') {
+    list();
   }
   else{
     unknownCommand(text);
@@ -97,6 +99,22 @@ console.log('1_ hello for saying just hello or hello plus your additional input 
          );
 
 }
+
+//
+
+
+var toDo=["buy bread","add potato","do the exercise"];
+
+function list(){
+
+var m="";
+for (let i = 1; i <= toDo.length; i++) {
+
+  m=m+i+"_"+toDo[i-1]+"\n";
+}
+console.log(m);
+}
+
 
 
 // The following line starts the application
