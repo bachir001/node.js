@@ -51,6 +51,8 @@ function onDataReceived(text) {
     list();
   }else if (text.trim().split(" ")[0]==="add") {
     add(text);
+  }else if (text.trim().split(" ")[0]==="del") {
+    del(text);
   }
   else{
     unknownCommand(text);
@@ -111,7 +113,6 @@ function list(){
 
 var m="";
 for (let i = 1; i <= toDo.length; i++) {
-
   m=m+i+"_"+toDo[i-1]+"\n";
 }
 console.log(m);
@@ -122,7 +123,7 @@ console.log(m);
 //add list
 
  function add(text){
-  if (x= text.trim().split(" ")[1] == undefined) {
+  if (text.trim().split(" ")[1] == undefined) {
      console.log("error");
    }else{
 
@@ -130,6 +131,27 @@ console.log(m);
 
 }
 
+//delete element
+
+
+
+
+
+function del(text){
+  var i=text.substring(3).trim();
+
+if(text.trim().split(" ")[1] == undefined){
+ toDo.pop();
+}else if (isNaN(i)){
+ console.log("enter a valid number");
+}else{
+
+  toDo.splice(i-1,1);
+}
+
+
+
+}
 
 
 
