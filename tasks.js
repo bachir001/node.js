@@ -149,13 +149,17 @@ if(text.trim().split(" ")[1] == undefined){
 }else if (isNaN(i)){
  console.log("enter a valid number");
 }else{
+  if (i> toDo.length) {
+    console.log("number out of Range");
+  } else
+  {toDo.splice(i-1,1);}
+}
 
-  toDo.splice(i-1,1);
 }
 
 
 
-}
+
 
 
 
