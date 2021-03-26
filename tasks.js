@@ -49,6 +49,8 @@ function onDataReceived(text) {
     help();
   }else if (text.trim()==='list') {
     list();
+  }else if (text.trim().split(" ")[0]==="add") {
+    add(text);
   }
   else{
     unknownCommand(text);
@@ -100,7 +102,7 @@ console.log('1_ hello for saying just hello or hello plus your additional input 
 
 }
 
-//
+// list task
 
 
 var toDo=["buy bread","add potato","do the exercise"];
@@ -114,6 +116,20 @@ for (let i = 1; i <= toDo.length; i++) {
 }
 console.log(m);
 }
+
+
+
+//add list
+
+ function add(text){
+  if (x= text.trim().split(" ")[1] == undefined) {
+     console.log("error");
+   }else{
+
+  toDo.push(text.substring(3).trim());}
+
+}
+
 
 
 
