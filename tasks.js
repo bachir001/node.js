@@ -39,6 +39,8 @@ function onDataReceived(text) {
   }
   else if(text.trim() === 'hello'){
     hello();
+  }else if (text.trim()==='help') {
+    help();
   }
   else{
     unknownCommand(text);
@@ -78,6 +80,18 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+
+
+//
+
+function help(){
+
+console.log('1_ hello for saying hello\n'+
+            '2_quit or exit for quit the app\n'
+         );
+
+}
+
 
 // The following line starts the application
 startApp("bachir")
