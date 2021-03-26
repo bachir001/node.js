@@ -2,10 +2,10 @@
 /**
  * Starts the application
  * This is the function that is run when the app starts
- * 
+ *
  * It prints a welcome line, and then a line with "----",
  * then nothing.
- *  
+ *
  * @param  {string} name the name of the app
  * @returns {void}
  */
@@ -21,29 +21,30 @@ function startApp(name){
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
- * 
- * For example, if the user entered 
+ *
+ * For example, if the user entered
  * ```
  * node tasks.js batata
  * ```
- * 
+ *
  * The text received would be "batata"
  * This function  then directs to other functions
- * 
+ *
  * @param  {string} text data typed by the user
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === 'quit\n') {
+  if (text.trim() === 'quit') {
     quit();
   }
-  else if(text === 'hello\n'){
+  else if(text.trim() === 'hello'){
     hello();
   }
   else{
     unknownCommand(text);
   }
 }
+
 
 
 /**
@@ -79,4 +80,4 @@ function quit(){
 }
 
 // The following line starts the application
-startApp("Jad Sarout")
+startApp("bachir")
