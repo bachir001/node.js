@@ -53,6 +53,8 @@ function onDataReceived(text) {
     add(text);
   }else if (text.trim().split(" ")[0]==="del") {
     del(text);
+  }else if (text.trim().split(" ")[0]==="edit") {
+    edit(text);
   }
   else{
     unknownCommand(text);
@@ -158,6 +160,30 @@ if(text.trim().split(" ")[1] == undefined){
 }
 
 
+// edit function
+
+
+function edit(text){
+  var i=text.substring(4).trim();
+  var j;
+
+if(text.trim().split(" ")[1] == undefined){
+  console.log("enter valid input to edit");
+}else if (isNaN(text.trim().split(" ")[1])){
+ toDo[toDo.length -1] = i;
+}else{
+        j=text.trim().split(" ")[1] ;
+        var m=text.indexOf(text.trim().split(" ")[2]);
+
+        if (m==-1 ){
+          console.log("enter something to edit ");
+        }
+        else{
+          toDo[j-1]=text.substring(m).trim();
+             }
+      }
+
+}
 
 
 
