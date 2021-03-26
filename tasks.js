@@ -82,7 +82,7 @@ function quit(){
 }
 
 
-//
+// get some idea of commands that you can use
 
 function help(){
 
