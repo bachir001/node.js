@@ -9,28 +9,34 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+
+ var dataName;
+ var toDo;
+
 function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
-  load();
+  check_argument();
+  load(dataName);
 }
+
+
+
+
 
 
 //load function
 
 const fs = require('fs');
 
-var toDo;
+
+function load(dbName='database.json'){
 
 
-
-function load(){
-
-
-fs.readFile('database.json','utf-8',function (err,jsonString){
+fs.readFile(dbName,'utf-8',function (err,jsonString){
 
   if (err) throw err;
 
@@ -131,7 +137,7 @@ function hello(text){
  */
 function quit(){
 
-  save();
+  save(dataName);
 
   console.log('Quitting now, goodbye!');
 
@@ -156,7 +162,7 @@ function help(){
 
 }
 
-// list task
+// list task function
 
 
 // var toDo=[ ["buy bread",true],["add potato",false],["do the exercise",true] ];//here we have 2 dimrnsion array / the second dimension is for done property/if the user finish the task it's true else it's false
@@ -183,7 +189,7 @@ console.log(m);
 
 
 
-//add list
+//add list function
 
  function add(text){
   if (text.trim().split(" ")[1] == undefined) {
@@ -201,9 +207,7 @@ console.log(m);
 
 }
 
-//delete element
-
-
+//delete element function
 
 
 
@@ -260,6 +264,7 @@ if(text.trim().split(" ")[1] == undefined){
 
 
    //check function
+
    function check(text){
 
      var che0;
@@ -314,15 +319,12 @@ function uncheck(text){
 
 //save function
 
-function save(){
+function save(dbName='database.json'){
 
   var myjson=JSON.stringify(toDo);
 
-  console.log(myjson);
 
-
-
-  fs.writeFileSync('database.json', myjson, function (err) {
+  fs.writeFileSync(dbName, myjson, function (err) {
     if (err) throw err;
     console.log('Saved!');
   });
@@ -331,7 +333,31 @@ function save(){
 
 
 
+// check_argument function
 
+function check_argument(){
+
+  if(process.argv[2]==undefined){
+    dataName='database.json';
+  }else{
+    const second_args=process.argv[2].toString();
+
+    const path = './'+second_args;
+
+  if (fs.existsSync(path)) {
+  console.log("exist");
+  dataName=process.argv[2];
+  }else{
+     dataName=process.argv[2];
+     let arr=[["default",false]];
+    fs.writeFileSync(process.argv[2],JSON.stringify(arr), function (err) {
+      if (err) throw err;
+      console.log('created!');
+    });
+
+}
+  }
+}
 
 
 // The following line starts the application
