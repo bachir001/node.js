@@ -57,6 +57,8 @@ function onDataReceived(text) {
     edit(text);
   }else if (text.trim().split(" ")[0]==="check") {
     check(text);
+  }else if (text.trim().split(" ")[0]==="uncheck") {
+    uncheck(text);
   }
   else{
     unknownCommand(text);
@@ -200,7 +202,7 @@ if(text.trim().split(" ")[1] == undefined){
         var m1=m.toString();
 
         if(t!="5"){
-           console.log(" make sure that you didn't put a lot spaces ");
+           console.log(" make sure that you didn't put a lot of spaces ");
          }else if (j>toDo.length) {
            console.log(" make sure of the edit number ");
          }else if (m1!="7") {
@@ -215,10 +217,56 @@ if(text.trim().split(" ")[1] == undefined){
 
 
 
+   //check function
+   function check(text){
 
+     var che0;
+     var che1;
 
+     if(text.trim().split(" ")[1] == undefined){
+       console.log("enter valid input");
+     }else if (isNaN(text.trim().split(" ")[1])) {
+       console.log("input should be number");
+     }else{
+             che0=text.trim().split(" ")[1] ;
+             che1=text.indexOf(text.trim().split(" ")[1]).toString();
+             var che2=text.indexOf(text.trim().split(" ")[2]);
 
+             if(che1!="6"){
+                console.log(" make sure that you didn't put a lot of spaces ");
+              }else if (che0>toDo.length) {
+                console.log(" make sure of the check number ");
+              }else{
+               toDo[che0-1][1]=true;
+     }
+      }
+        }
 
+//uncheck function
+
+function uncheck(text){
+
+  var unche0;
+  var unche1;
+
+  if(text.trim().split(" ")[1] == undefined){
+    console.log("enter valid input");
+  }else if (isNaN(text.trim().split(" ")[1])) {
+    console.log("input should be number");
+  }else{
+          unche0=text.trim().split(" ")[1] ;
+          unche1=text.indexOf(text.trim().split(" ")[1]).toString();
+          var unche2=text.indexOf(text.trim().split(" ")[2]);
+
+          if(unche1!="8"){
+             console.log(" make sure that you didn't put a lot of spaces ");
+           }else if (unche0>toDo.length) {
+             console.log(" make sure of the uncheck number ");
+           }else{
+            toDo[unche0-1][1]=false;
+  }
+   }
+     }
 
 
 // The following line starts the application
