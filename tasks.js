@@ -55,6 +55,8 @@ function onDataReceived(text) {
     del(text);
   }else if (text.trim().split(" ")[0]==="edit") {
     edit(text);
+  }else if (text.trim().split(" ")[0]==="check") {
+    check(text);
   }
   else{
     unknownCommand(text);
@@ -113,13 +115,24 @@ function help(){
 // list task
 
 
-var toDo=["buy bread","add potato","do the exercise"];
+var toDo=[ ["buy bread",true],["add potato",false],["do the exercise",true] ];//here we have 2 dimrnsion array / the second dimension is for done property/if the user finish the task it's true else it's false
+
+// console.log(toDo.length);
+// console.table(toDo);
+
+var sign="";
 
 function list(){
 
 var m="";
 for (let i = 1; i <= toDo.length; i++) {
-  m=m+i+"_"+toDo[i-1]+"\n";
+
+if(toDo[i-1][1]===true){
+  sign=" [✔] ";
+}else{
+  sign=" [ ] ";
+}
+  m= m+i+sign+toDo[i-1][0]+"\n";
 }
 console.log(m);
 }
@@ -133,7 +146,14 @@ console.log(m);
      console.log("error");
    }else{
 
-  toDo.push(text.substring(3).trim());}
+ toDo.length=toDo.length+1;
+
+  var len=toDo.length;
+  var te=text.substring(3).trim();
+
+ toDo[len-1]=[te,false];
+
+}
 
 }
 
@@ -166,24 +186,36 @@ if(text.trim().split(" ")[1] == undefined){
 function edit(text){
   var i=text.substring(4).trim();
   var j;
+  var t;
 
 if(text.trim().split(" ")[1] == undefined){
   console.log("enter valid input to edit");
 }else if (isNaN(text.trim().split(" ")[1])){
- toDo[toDo.length -1] = i;
+ toDo[toDo.length -1][0] = i;
+ toDo[toDo.length -1][1]=false;
 }else{
         j=text.trim().split(" ")[1] ;
+        t=text.indexOf(text.trim().split(" ")[1]).toString();
         var m=text.indexOf(text.trim().split(" ")[2]);
+        var m1=m.toString();
 
-        if (m==-1 ){
-          console.log("enter something to edit ");
-        }
-        else{
-          toDo[j-1]=text.substring(m).trim();
-             }
-      }
-
+        if(t!="5"){
+           console.log(" make sure that you didn't put a lot spaces ");
+         }else if (j>toDo.length) {
+           console.log(" make sure of the edit number ");
+         }else if (m1!="7") {
+           console.log(" make sure that you enter something to edit");
+         }
+          else{
+          toDo[j-1][0]=text.substring(m).trim();
+          toDo[j-1][1]=false;
 }
+ }
+   }
+
+
+
+
 
 
 
