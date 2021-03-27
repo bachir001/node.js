@@ -15,6 +15,34 @@ function startApp(name){
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
+  load();
+}
+
+
+//load function
+
+const fs = require('fs');
+
+function load(){
+
+fs.readFile('database.json','utf-8',function (err,jsonString){
+
+  if (err) throw err;
+
+try {
+const data=JSON.parse(jsonString);
+
+} catch (err) {
+
+console.log('Error parsing JSON',err);
+
+}
+
+console.log("loaded sucessfully");
+
+
+});
+
 }
 
 
@@ -95,7 +123,11 @@ function hello(text){
  * @returns {void}
  */
 function quit(){
-  console.log('Quitting now, goodbye!')
+
+  save();
+
+  console.log('Quitting now, goodbye!');
+
   process.exit();
 }
 
@@ -236,7 +268,7 @@ if(text.trim().split(" ")[1] == undefined){
              var che2=text.indexOf(text.trim().split(" ")[2]);
 
              if(che1!="6"){
-                console.log(" make sure that you didn't put a lot of spaces ");
+              console.log(" make sure that you didn't put a lot of spaces ");
               }else if (che0>toDo.length) {
                 console.log(" make sure of the check number ");
               }else{
@@ -270,6 +302,29 @@ function uncheck(text){
   }
    }
      }
+
+
+
+//save function
+
+function save(){
+
+  var myjson=JSON.stringify(toDo);
+
+  console.log(myjson);
+
+  
+
+  fs.writeFileSync('database.json', myjson, function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
+
+}
+
+
+
+
 
 
 // The following line starts the application
