@@ -23,7 +23,12 @@ function startApp(name){
 
 const fs = require('fs');
 
+var toDo;
+
+
+
 function load(){
+
 
 fs.readFile('database.json','utf-8',function (err,jsonString){
 
@@ -31,6 +36,8 @@ fs.readFile('database.json','utf-8',function (err,jsonString){
 
 try {
 const data=JSON.parse(jsonString);
+
+toDo=data;
 
 } catch (err) {
 
@@ -152,7 +159,7 @@ function help(){
 // list task
 
 
-var toDo=[ ["buy bread",true],["add potato",false],["do the exercise",true] ];//here we have 2 dimrnsion array / the second dimension is for done property/if the user finish the task it's true else it's false
+// var toDo=[ ["buy bread",true],["add potato",false],["do the exercise",true] ];//here we have 2 dimrnsion array / the second dimension is for done property/if the user finish the task it's true else it's false
 
 // console.log(toDo.length);
 // console.table(toDo);
@@ -313,7 +320,7 @@ function save(){
 
   console.log(myjson);
 
-  
+
 
   fs.writeFileSync('database.json', myjson, function (err) {
     if (err) throw err;
